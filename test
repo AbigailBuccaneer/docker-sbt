@@ -1,0 +1,14 @@
+#!/bin/sh
+
+image="${1-abigail/sbt:latest}"
+echo "image: $image"
+
+echo -n "testing running sbt... "
+docker run --rm "$image" sbt exit > /dev/null
+if [ "$?" -eq 0 ] ; then echo "success"; else echo "failure"; exit 1; fi
+
+echo -n "testing running sbt in a conventional project structure... "
+docker run --rm -v "$PWD/testresources:/testresources:ro" -w "/testresources/conventional" abigail/sbt:local sbt run > /dev/null
+if [ "$?" -eq 0 ] ; then echo "success"; else echo "failure"; exit 1; fi
+
+echo "all tests passed!"

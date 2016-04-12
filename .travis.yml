@@ -22,5 +22,5 @@ env:
   - VERSION=2.11.8
 
 script:
-  - docker build "$VERSION"
-  # TODO use the installed sbt to build some test code
+  - docker build -t abigail/sbt:local "$VERSION"
+  - ./test abigail/sbt:local
