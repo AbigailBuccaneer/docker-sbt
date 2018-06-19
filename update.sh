@@ -18,6 +18,9 @@ declare -a versions=(
 	2.11.6
 	2.11.7
 	2.11.8
+	2.11.9
+	2.11.10
+	2.11.11
 )
 
 for version in "${versions[@]}"
@@ -31,7 +34,7 @@ do
 		FROM abigail/scala:$version
 		MAINTAINER Abigail <AbigailBuccaneer@users.noreply.github.com>
 
-		ENV SBT_VERSION 0.13.11
+		ENV SBT_VERSION 0.13.13
 		RUN apt-get update -y && \\
 		    apt-get install -y --no-install-recommends apt-transport-https && \\
 		    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 642AC823 && \\
